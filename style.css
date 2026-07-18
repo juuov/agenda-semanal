@@ -1,0 +1,364 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #ff6435;
+  color: #fff98e;
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 32px;
+}
+
+.form-selection {
+  background-color: #34343496;
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.05);
+  border: none;
+}
+
+.form-selection h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+#task-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr auto;
+  gap: 16px;
+  align-items: end;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: #ddffffe8;
+}
+
+button {
+  height: 42px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.delete-button {
+  height: auto;
+  padding: 3px 5px;
+  background-color: #dc2626;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+.delete-button:hover {
+  background-color: #b91c1c;
+}
+
+#save-button {
+  width: auto;
+  background-color: #2563eb;
+}
+
+#save-button:hover {
+  background-color: #1d4ed8;
+}
+
+#clear-button {
+  width: auto;
+  background-color: #dc2626;
+}
+
+#clear-button:hover {
+  background-color: #b91c1c;
+}
+
+#pdf-button {
+  width: auto;
+  background-color: #ffffff;
+  color: #151515;
+}
+
+#pdf-button:hover {
+  background-color: #cacaca;
+}
+
+.week-section h2 {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 16px;
+}
+
+.day-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  min-height: 260px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.day-card h3 {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 12px;
+  color: #2563eb;
+}
+
+.day-card ul {
+  list-style: none;
+}
+
+.task-item {
+  background-color: #f9fafb;
+  color: #151515;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-time {
+  font-weight: bold;
+  color: #111827;
+  display: block;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 1000px) {
+  .week-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #task-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .week-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: row;
+  }
+
+  .action-buttons button {
+    flex: 1;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+}
+
+/* Seção destinada a estilização do PDF gerado */
+
+@media print {
+
+  @page {
+    size: A4 portrait;
+    margin: 14mm;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #1f2937;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .container {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Esconde formulário e botões */
+  .form-selection {
+    display: none;
+  }
+
+  /* Cabeçalho do PDF */
+  h1 {
+    color: #1f2937;
+    font-size: 25px;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #374151;
+  }
+
+  .subtitle {
+    color: #6b7280;
+    font-size: 11px;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+  /* Título da seção */
+  .week-section h2 {
+    color: #374151;
+    font-size: 16px;
+    text-align: left;
+    margin: 0 0 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Organização dos dias */
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* Cada dia da semana */
+  .day-card {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-shadow: none;
+    padding: 0;
+    min-height: 105px;
+    overflow: hidden;
+
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Nome do dia */
+  .day-card h3 {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    font-size: 13px;
+    text-align: left;
+    padding: 9px 12px;
+    margin: 0;
+    border-bottom: 1px solid #d1d5db;
+  }
+
+  /* Lista de tarefas */
+  .day-card ul {
+    padding: 8px 10px;
+    margin: 0;
+  }
+
+  /* Cada tarefa */
+  .task-item {
+    background-color: transparent;
+    color: #1f2937;
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
+    border-radius: 0;
+    padding: 7px 2px;
+    margin: 0;
+    font-size: 10px;
+
+    display: block;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .task-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Horário */
+  .task-time {
+    display: inline-block;
+    min-width: 43px;
+    margin: 0 7px 0 0;
+    padding: 3px 5px;
+    border-radius: 4px;
+    background-color: #e5e7eb;
+    color: #111827;
+    font-size: 9px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /* Esconde o botão X */
+  .delete-button {
+    display: none;
+  }
+
+  button {
+    display: none;
+  }
+}

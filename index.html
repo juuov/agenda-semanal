@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Agenda Semanal</title>
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>  
+
+        <main class="container">
+            <h1>📅 Minha Agenda Semanal 📅</h1>
+            <p class="subtitle"> Organize suas atividades da semana</p>
+
+            <section class="form-selection">
+                <h2>Adicionar Tarefa</h2>
+
+                <form id="task-form">
+                    <div class="form-group">
+                        <label for="day">Dia da Semana</label>
+                        <select id="day" required>
+                            <option value="">Selecione o dia</option>
+                            <option value="segunda">Segunda-feira</option>
+                            <option value="terca">Terça-feira</option>
+                            <option value="quarta">Quarta-feira</option>
+                            <option value="quinta">Quinta-feira</option>
+                            <option value="sexta">Sexta-feira</option>
+                            <option value="sabado">Sábado</option>
+                            <option value="domingo">Domingo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="time">Horário</label>
+                        <input type="time" id="time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="activity">Tarefa</label>
+                        <input 
+                        type="text" 
+                        id="activity" 
+                        placeholder="Ex: Reunião, estudo, academia..." 
+                        required>
+                    </div>
+
+                    <button type="submit">Adicionar</button>
+                </form>
+
+                <div class="action-buttons">
+                    <button id="save-button" type="button">Salvar Agenda</button>
+                    <button id="clear-button" type="button">Limpar Agenda</button>
+                    <button id="pdf-button" type="button">Gerar PDF</button>
+                </div>
+
+            </section>  
+
+            <section class="week-section">
+                <h2>Agenda da Semana</h2>
+
+                <div class="week-grid">
+                    <div class="day-card" id="segunda">
+                        <h3>Segunda-feira</h3>
+                        <ul></ul>
+                    </div>
+
+                    <div class="day-card" id="terca">
+                        <h3>Terça-feira</h3>
+                        <ul></ul>
+                    </div>
+
+                    <div class="day-card" id="quarta">
+                        <h3>Quarta-feira</h3>
+                        <ul></ul>
+                    </div>
+
+                    <div class="day-card" id="quinta">
+                        <h3>Quinta-feira</h3>
+                        <ul></ul>
+                    </div>
+
+                    <div class="day-card" id="sexta">
+                        <h3>Sexta-feira</h3>
+                        <ul></ul>
+                    </div>
+
+                    <div class="day-card" id="sabado">
+                        <h3>Sábado</h3>
+                        <ul></ul>
+                    </div>
+
+                    <div class="day-card" id="domingo">
+                        <h3>Domingo</h3>
+                        <ul></ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script src="script.js"></script>
+    </body>
+
+    </html>
