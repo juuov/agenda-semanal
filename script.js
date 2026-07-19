@@ -2,9 +2,56 @@ const form = document.getElementById("task-form");
 const dayInput = document.getElementById("day");
 const timeInput = document.getElementById("time");
 const activityInput = document.getElementById("activity");
+
 const saveButton = document.getElementById("save-button");
 const clearButton = document.getElementById("clear-button");
 const pdfButton = document.getElementById("pdf-button");
+
+const recurringToggle = document.getElementById("recurring-toggle");
+
+const recurringOptions = document.getElementById("recurring-options");
+const allDaysInput = document.getElementById("all-days");
+const recurringDayInputs = document.querySelectorAll(".recurring-day");
+
+recurringToggle.addEventListener("change", function () {
+  recurringOptions.classList.toggle(
+    "visible",
+    recurringToggle.checked
+  );
+
+  if (recurringToggle.checked === false) {
+    clearRecurringSelection();
+  }
+});
+
+allDaysInput.addEventListener("change", function () {
+  for (const input of recurringDayInputs) {
+    input.checked = allDaysInput.checked;
+  }
+});
+
+for (const input of recurringDayInputs) {
+  input.addEventListener("change", function () {
+    updateAllDaysCheckbox();
+  });
+}
+
+function updateAllDaysCheckbox() {
+  const everyDayIsChecked =
+    Array.from(recurringDayInputs).every(function (input) {
+      return input.checked;
+    });
+
+  allDaysInput.checked = everyDayIsChecked;
+}
+
+function clearRecurringSelection() {
+  allDaysInput.checked = false;
+
+  for (const input of recurringDayInputs) {
+    input.checked = false;
+  }
+}
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -13,10 +60,31 @@ form.addEventListener("submit", function (event) {
   const time = timeInput.value;
   const activity = activityInput.value;
 
-  createTask(day, time, activity);
+  const selectedDays = getSelectedDays(day);
+
+  for (const selectedDay of selectedDays) {
+    createTask(selectedDay, time, activity);
+  }
 
   form.reset();
+
+  recurringOptions.classList.remove("visible");
+  clearRecurringSelection();
 });
+
+function getSelectedDays(mainDay) {
+  const selectedDays = [mainDay];
+
+  for (const input of recurringDayInputs) {
+    if (input.checked === true) {
+      selectedDays.push(input.value);
+    }
+  }
+
+  const uniqueDays = [...new Set(selectedDays)];
+
+  return uniqueDays;
+}
 
 saveButton.addEventListener("click", function () {
   saveTasks();
@@ -59,9 +127,13 @@ function createTask(day, time, activity) {
 
   const deleteButton = taskItem.querySelector(".delete-button");
 
-  deleteButton.addEventListener("click", function () {
+deleteButton.addEventListener("click", function () {
+  taskItem.classList.add("removing");
+
+  setTimeout(function () {
     taskItem.remove();
-  });
+  }, 250);
+});
 
   addTaskInCorrectOrder(taskList, taskItem);
 }
@@ -128,3 +200,28 @@ function clearAgenda() {
 
   alert("Agenda apagada com sucesso!");
 }
+
+// Destacar card do dia  //
+function highlightCurrentDay() {
+  const today = new Date();
+  const currentDayNumber = today.getDay();
+
+  const daysOfWeek = [
+    "domingo",
+    "segunda",
+    "terca",
+    "quarta",
+    "quinta",
+    "sexta",
+    "sabado"
+  ];
+
+  const currentDayName = daysOfWeek[currentDayNumber];
+  const currentDayCard = document.getElementById(currentDayName);
+
+  if (currentDayCard !== null) {
+    currentDayCard.classList.add("current-day");
+  }
+}
+
+highlightCurrentDay();

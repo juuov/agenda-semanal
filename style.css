@@ -6,7 +6,7 @@
 
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: #ff6435;
+  background-color: #1b8f83;
   color: #fff98e;
   min-height: 100vh;
   padding: 32px;
@@ -73,6 +73,94 @@ h1 {
   background-color: #ddffffe8;
 }
 
+.recurring-group {
+  grid-column: 1 / -1;
+}
+
+.recurring-toggle-label {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #ffffff20;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.recurring-toggle-label:hover {
+  background-color: #ffffff35;
+}
+
+.recurring-toggle-label input {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.recurring-options {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding: 0 14px;
+  background-color: #ddffffe8;
+  border-radius: 10px;
+
+  transition:
+    max-height 0.35s ease,
+    opacity 0.25s ease,
+    margin-top 0.35s ease,
+    padding 0.35s ease;
+}
+
+.recurring-options.visible {
+  max-height: 220px;
+  opacity: 1;
+  margin-top: 10px;
+  padding: 14px;
+}
+
+.all-days-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  color: #343434;
+  font-weight: bold;
+  border-bottom: 1px solid #b8cccc;
+  cursor: pointer;
+}
+
+.recurring-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.recurring-days label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 10px;
+  background-color: #ffffff;
+  color: #343434;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.recurring-days input,
+.all-days-option input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
 button {
   height: 42px;
   padding: 0 20px;
@@ -83,10 +171,22 @@ button {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+
+  transition: 
+    background-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
 }
 
 button:hover {
   background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .action-buttons {
@@ -150,22 +250,43 @@ button:hover {
 }
 
 .day-card {
-  background-color: #ffffff;
+  background-color: #f1fffd;
   border-radius: 16px;
   padding: 16px;
   min-height: 260px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 }
 
 .day-card h3 {
   font-size: 14px;
   text-align: center;
   margin-bottom: 12px;
-  color: #2563eb;
+  color: #166d62;
 }
 
 .day-card ul {
   list-style: none;
+}
+
+.current-day {
+  border: 5px solid #23ffe2;
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.current-day h3 {
+  color: #166d62;
+}
+
+.current-day:hover{
+  transform: translateY(-8px);
 }
 
 .task-item {
@@ -181,6 +302,13 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
+  animation: taskFadeIn 0.3s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.task-item.removing {
+  opacity: 0;
+  transform: translateX(20px);
 }
 
 .task-time {
@@ -223,6 +351,24 @@ button:hover {
     font-size: 12px;
   }
 }
+
+/* Animações */
+.task-item {
+  animation: taskFadeIn 0.3s ease;
+}
+
+@keyframes taskFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* Seção destinada a estilização do PDF gerado */
 
@@ -319,6 +465,16 @@ button:hover {
     margin: 0;
   }
 
+  .current-day {
+  border: 1px solid #d1d5db;
+  transform: none;
+  box-shadow: none;
+}
+
+.current-day h3 {
+  color: #1f2937;
+}
+
   /* Cada tarefa */
   .task-item {
     background-color: transparent;
@@ -360,5 +516,11 @@ button:hover {
 
   button {
     display: none;
+  }
+
+  * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
   }
 }

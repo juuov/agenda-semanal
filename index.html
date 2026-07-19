@@ -1,105 +1,153 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Agenda Semanal</title>
 
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Semanal</title>
 
-    <body>  
+    <link rel="stylesheet" href="style.css">
+</head>
 
-        <main class="container">
-            <h1>📅 Minha Agenda Semanal 📅</h1>
-            <p class="subtitle"> Organize suas atividades da semana</p>
+<body>
 
-            <section class="form-selection">
-                <h2>Adicionar Tarefa</h2>
+    <main class="container">
+        <h1>📅 Minha Agenda Semanal 📅</h1>
+        <p class="subtitle"> Organize suas atividades da semana</p>
 
-                <form id="task-form">
-                    <div class="form-group">
-                        <label for="day">Dia da Semana</label>
-                        <select id="day" required>
-                            <option value="">Selecione o dia</option>
-                            <option value="segunda">Segunda-feira</option>
-                            <option value="terca">Terça-feira</option>
-                            <option value="quarta">Quarta-feira</option>
-                            <option value="quinta">Quinta-feira</option>
-                            <option value="sexta">Sexta-feira</option>
-                            <option value="sabado">Sábado</option>
-                            <option value="domingo">Domingo</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="time">Horário</label>
-                        <input type="time" id="time" required>
-                    </div>
+        <section class="form-selection">
+            <h2>Adicionar Tarefa</h2>
 
-                    <div class="form-group">
-                        <label for="activity">Tarefa</label>
-                        <input 
-                        type="text" 
-                        id="activity" 
-                        placeholder="Ex: Reunião, estudo, academia..." 
-                        required>
-                    </div>
-
-                    <button type="submit">Adicionar</button>
-                </form>
-
-                <div class="action-buttons">
-                    <button id="save-button" type="button">Salvar Agenda</button>
-                    <button id="clear-button" type="button">Limpar Agenda</button>
-                    <button id="pdf-button" type="button">Gerar PDF</button>
+            <form id="task-form">
+                <div class="form-group">
+                    <label for="day">Dia da Semana</label>
+                    <select id="day" required>
+                        <option value="">Selecione o dia</option>
+                        <option value="segunda">Segunda-feira</option>
+                        <option value="terca">Terça-feira</option>
+                        <option value="quarta">Quarta-feira</option>
+                        <option value="quinta">Quinta-feira</option>
+                        <option value="sexta">Sexta-feira</option>
+                        <option value="sabado">Sábado</option>
+                        <option value="domingo">Domingo</option>
+                    </select>
                 </div>
 
-            </section>  
+                <div class="form-group">
+                    <label for="time">Horário</label>
+                    <input type="time" id="time" required>
+                </div>
 
-            <section class="week-section">
-                <h2>Agenda da Semana</h2>
+                <div class="form-group">
+                    <label for="activity">Tarefa</label>
+                    <input type="text" id="activity" placeholder="Ex: Reunião, estudo, academia..." required>
+                </div>
 
-                <div class="week-grid">
-                    <div class="day-card" id="segunda">
-                        <h3>Segunda-feira</h3>
-                        <ul></ul>
-                    </div>
+                <div class="form-group recurring-group">
+                    <label class="recurring-toggle-label" for="recurring-toggle">
+                        <input type="checkbox" id="recurring-toggle">
+                        <span>Repetir tarefa em outros dias</span>
+                    </label>
 
-                    <div class="day-card" id="terca">
-                        <h3>Terça-feira</h3>
-                        <ul></ul>
-                    </div>
+                    <div id="recurring-options" class="recurring-options">
+                        <label class="all-days-option" for="all-days">
+                            <input type="checkbox" id="all-days">
+                            <span>Todos os dias</span>
+                        </label>
 
-                    <div class="day-card" id="quarta">
-                        <h3>Quarta-feira</h3>
-                        <ul></ul>
-                    </div>
+                        <div class="recurring-days">
+                            <label>
+                                <input type="checkbox" value="segunda" class="recurring-day">
+                                Segunda
+                            </label>
 
-                    <div class="day-card" id="quinta">
-                        <h3>Quinta-feira</h3>
-                        <ul></ul>
-                    </div>
+                            <label>
+                                <input type="checkbox" value="terca" class="recurring-day">
+                                Terça
+                            </label>
 
-                    <div class="day-card" id="sexta">
-                        <h3>Sexta-feira</h3>
-                        <ul></ul>
-                    </div>
+                            <label>
+                                <input type="checkbox" value="quarta" class="recurring-day">
+                                Quarta
+                            </label>
 
-                    <div class="day-card" id="sabado">
-                        <h3>Sábado</h3>
-                        <ul></ul>
-                    </div>
+                            <label>
+                                <input type="checkbox" value="quinta" class="recurring-day">
+                                Quinta
+                            </label>
 
-                    <div class="day-card" id="domingo">
-                        <h3>Domingo</h3>
-                        <ul></ul>
+                            <label>
+                                <input type="checkbox" value="sexta" class="recurring-day">
+                                Sexta
+                            </label>
+
+                            <label>
+                                <input type="checkbox" value="sabado" class="recurring-day">
+                                Sábado
+                            </label>
+
+                            <label>
+                                <input type="checkbox" value="domingo" class="recurring-day">
+                                Domingo
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </main>
 
-        <script src="script.js"></script>
-    </body>
+                <button type="submit">Adicionar</button>
+            </form>
 
-    </html>
+            <div class="action-buttons">
+                <button id="save-button" type="button">Salvar Agenda</button>
+                <button id="clear-button" type="button">Limpar Agenda</button>
+                <button id="pdf-button" type="button">Gerar PDF</button>
+            </div>
+
+        </section>
+
+        <section class="week-section">
+            <h2>Agenda da Semana</h2>
+
+            <div class="week-grid">
+                <div class="day-card" id="segunda">
+                    <h3>Segunda-feira</h3>
+                    <ul></ul>
+                </div>
+
+                <div class="day-card" id="terca">
+                    <h3>Terça-feira</h3>
+                    <ul></ul>
+                </div>
+
+                <div class="day-card" id="quarta">
+                    <h3>Quarta-feira</h3>
+                    <ul></ul>
+                </div>
+
+                <div class="day-card" id="quinta">
+                    <h3>Quinta-feira</h3>
+                    <ul></ul>
+                </div>
+
+                <div class="day-card" id="sexta">
+                    <h3>Sexta-feira</h3>
+                    <ul></ul>
+                </div>
+
+                <div class="day-card" id="sabado">
+                    <h3>Sábado</h3>
+                    <ul></ul>
+                </div>
+
+                <div class="day-card" id="domingo">
+                    <h3>Domingo</h3>
+                    <ul></ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
