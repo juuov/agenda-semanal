@@ -14,10 +14,7 @@ const allDaysInput = document.getElementById("all-days");
 const recurringDayInputs = document.querySelectorAll(".recurring-day");
 
 recurringToggle.addEventListener("change", function () {
-  recurringOptions.classList.toggle(
-    "visible",
-    recurringToggle.checked
-  );
+  recurringOptions.classList.toggle("visible", recurringToggle.checked);
 
   if (recurringToggle.checked === false) {
     clearRecurringSelection();
@@ -37,10 +34,11 @@ for (const input of recurringDayInputs) {
 }
 
 function updateAllDaysCheckbox() {
-  const everyDayIsChecked =
-    Array.from(recurringDayInputs).every(function (input) {
+  const everyDayIsChecked = Array.from(recurringDayInputs).every(
+    function (input) {
       return input.checked;
-    });
+    },
+  );
 
   allDaysInput.checked = everyDayIsChecked;
 }
@@ -91,14 +89,14 @@ saveButton.addEventListener("click", function () {
   alert("Agenda salva com sucesso!");
 });
 
-clearButton.addEventListener("click", function() {
-    const confirmClear = confirm("Tem certeza que deseja apagar toda a agenda?");
+clearButton.addEventListener("click", function () {
+  const confirmClear = confirm("Tem certeza que deseja apagar toda a agenda?");
 
-    if (confirmClear === false) {
-        return;
-    }
+  if (confirmClear === false) {
+    return;
+  }
 
-    clearAgenda();
+  clearAgenda();
 });
 
 pdfButton.addEventListener("click", function () {
@@ -127,13 +125,13 @@ function createTask(day, time, activity) {
 
   const deleteButton = taskItem.querySelector(".delete-button");
 
-deleteButton.addEventListener("click", function () {
-  taskItem.classList.add("removing");
+  deleteButton.addEventListener("click", function () {
+    taskItem.classList.add("removing");
 
-  setTimeout(function () {
-    taskItem.remove();
-  }, 250);
-});
+    setTimeout(function () {
+      taskItem.remove();
+    }, 250);
+  });
 
   addTaskInCorrectOrder(taskList, taskItem);
 }
@@ -166,7 +164,7 @@ function saveTasks() {
     tasksArray.push({
       day: day,
       time: time,
-      activity: activity
+      activity: activity,
     });
   }
 
@@ -213,7 +211,7 @@ function highlightCurrentDay() {
     "quarta",
     "quinta",
     "sexta",
-    "sabado"
+    "sabado",
   ];
 
   const currentDayName = daysOfWeek[currentDayNumber];
